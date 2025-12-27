@@ -76,7 +76,7 @@ export const Procurement: React.FC<Props> = ({ user }) => {
   const requestConfirmation = (title: string, message: string, action: () => void) => { setConfirmModal({ isOpen: true, title, message, action }); };
   const executeConfirmation = () => { confirmModal.action(); setConfirmModal({ ...confirmModal, isOpen: false }); };
   
-  const openDocument = (url: string | null) => {
+  const openDocument = (url: string | null | undefined) => {
       if (!url) return alert("No document attached.");
       const win = window.open();
       if (win) {
@@ -159,7 +159,6 @@ export const Procurement: React.FC<Props> = ({ user }) => {
     setShowPrModal(false); loadData(); setSelectedBatchId(''); setSelectedMaterialId(''); setEditingPrId(null);
   };
 
-  // ... (Rest of existing handler functions remain unchanged)
   const openReviewModal = (pr: PurchaseRequest) => { setReviewPr(pr); setReviewNotes(''); };
   const handleProcessReview = (status: RequestStatus) => {
     if (!reviewPr) return;
